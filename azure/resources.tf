@@ -32,10 +32,10 @@ resource "azurerm_network_interface" "example" {
 }
 
 resource "azurerm_public_ip" "public_ip" {
-  name = "accesptanceTestPublicIp1"
+  name                = "accesptanceTestPublicIp1"
   resource_group_name = azurerm_resource_group.example.name
-  location = azurerm_resource_group.example.location
-  allocation_method = "Dynamic"
+  location            = azurerm_resource_group.example.location
+  allocation_method   = "Static"
 }
 
 resource "azurerm_linux_virtual_machine" "example" {
@@ -63,5 +63,20 @@ resource "azurerm_linux_virtual_machine" "example" {
     offer     = "UbuntuServer"
     sku       = "16.04-LTS"
     version   = "latest"
+  }
+
+  provisioner "remote-exec" {
+    inline = ["sudo apt update",
+      "sudo apt install python3 python3-pip git -y",
+      "git clone https://github.com/kamuridesu/NotAGame.git"
+    ]
+    on_failure = continue
+
+    connection {
+      type        = "ssh"
+      user        = "adminuser"
+      private_key = file("/home/kamuri/.ssh/id_rsa")
+      host        = azurerm_public_ip.public_ip.ip_address
+    }
   }
 }
