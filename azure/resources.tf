@@ -67,8 +67,13 @@ resource "azurerm_linux_virtual_machine" "example" {
 
   provisioner "remote-exec" {
     inline = ["sudo apt update",
-      "sudo apt install python3 python3-pip git -y",
-      "git clone https://github.com/kamuridesu/NotAGame.git"
+      "sudo apt install git docker.io -y",
+      "curl https://gist.githubusercontent.com/kamuridesu/a3bd18849f2067efccec3140627cd9a8/raw/26b00ad996384dddee72e0ee13beec8d642ad332/api.py > api.py",
+      "curl https://gist.githubusercontent.com/kamuridesu/a3bd18849f2067efccec3140627cd9a8/raw/26b00ad996384dddee72e0ee13beec8d642ad332/products.json > products.json",
+      "curl https://gist.githubusercontent.com/kamuridesu/a3bd18849f2067efccec3140627cd9a8/raw/26b00ad996384dddee72e0ee13beec8d642ad332/requirements.txt > requirements.txt",
+      "curl https://gist.githubusercontent.com/kamuridesu/a3bd18849f2067efccec3140627cd9a8/raw/26b00ad996384dddee72e0ee13beec8d642ad332/Dockerfile > Dockerfile",
+      "sudo docker build -t api .",
+      "sudo docker run -d --name api -p 5000:5000 api"
     ]
     on_failure = continue
 
