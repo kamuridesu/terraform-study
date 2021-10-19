@@ -11,5 +11,5 @@ variable "username" {
 variable "number_of_instances" {
   description = "Number os instances to be created"
   type        = number
-  default     = 1
+  default     = 2
 }

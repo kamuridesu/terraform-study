@@ -13,3 +13,9 @@ provider "azurerm" {
   }
   subscription_id = var.subscription_id
 }
+
+module "azure_computer" {
+  source = "./modules/azure_computer_instance"
+  username = var.username
+  subscription_id = var.subscription_id
+}
