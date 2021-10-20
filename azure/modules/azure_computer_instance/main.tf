@@ -1,13 +1,10 @@
 resource "azurerm_linux_virtual_machine" "example" {
-  # count               = var.number_of_instances
-  # name                = "${count.index}-example-machine"
   name                = "${var.prefix_name}-machine"
   resource_group_name = var.resource_group.name
   location            = var.resource_group.location
   size                = "Standard_F2"
   admin_username      = var.username
   network_interface_ids = [
-    # azurerm_network_interface.network_interface[count.index].id,
     var.network_interface_id
   ]
 

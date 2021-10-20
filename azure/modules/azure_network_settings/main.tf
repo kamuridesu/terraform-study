@@ -22,8 +22,6 @@ resource "azurerm_subnet" "subnet" {
 }
 
 resource "azurerm_network_interface" "network_interface" {
-  # count = var.number_of_instances
-  # name                = "${count.index}-example-nic"
   name                = "${var.prefix_name}-nic"
   location            = var.resource_group.location
   resource_group_name = var.resource_group.name
@@ -32,8 +30,6 @@ resource "azurerm_network_interface" "network_interface" {
     name                          = "${var.prefix_name}-internal"
     subnet_id                     = azurerm_subnet.subnet.id
     private_ip_address_allocation = "Dynamic"
-
-    # public_ip_address_id = azurerm_public_ip.public_ip[count.index].id
     public_ip_address_id = azurerm_public_ip.public_ip.id
   }
 }
