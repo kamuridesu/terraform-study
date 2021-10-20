@@ -35,6 +35,7 @@ module "azure_computer" {
   subscription_id      = var.subscription_id
   resource_group       = azurerm_resource_group.resource_group
   network_interface_id = module.azure_network[count.index].network_interface_id
+  public_ip = module.azure_network[count.index].public_ip_addresses
   depends_on = [
     module.azure_network
   ]
