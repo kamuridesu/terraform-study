@@ -1,6 +1,4 @@
 resource "azurerm_public_ip" "public_ip" {
-  # count = var.number_of_instances
-  # name                = "${count.index}-public_ip_instance"
   name                = "${var.prefix_name}-public-ip"
   resource_group_name = var.resource_group.name
   location            = var.resource_group.location
