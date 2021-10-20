@@ -15,7 +15,7 @@ variable "number_of_instances" {
 }
 
 variable "resource_group" {
-    description = "Azure resource group"
+  description = "Azure resource group"
 }
 
 variable "network_interface_id" {
@@ -23,11 +23,11 @@ variable "network_interface_id" {
 }
 
 variable "prefix_name" {
-    description = "Prefix to be added to the resource name"
-    type = string
+  description = "Prefix to be added to the resource name"
+  type        = string
 }
 
 variable "public_ip" {
   description = "Public IP Adresses to make SSH connection to the remote-exec provisioner"
-  default = ""
+  default     = ""
 }
