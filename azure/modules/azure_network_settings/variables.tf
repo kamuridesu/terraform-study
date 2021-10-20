@@ -7,7 +7,3 @@ variable "prefix_name" {
   type        = string
 }
 
-variable "public_ip_allocation_method" {
-  description = "Allocation method fot the public IP address"
-  type        = string
-}

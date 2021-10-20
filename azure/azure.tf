@@ -24,7 +24,6 @@ module "azure_network" {
   source                      = "./modules/azure_network_settings"
   prefix_name                 = "${count.index}-azure_network"
   resource_group              = azurerm_resource_group.resource_group
-  public_ip_allocation_method = "Static"
 }
 
 module "azure_computer" {
@@ -34,8 +33,10 @@ module "azure_computer" {
   username             = var.username
   subscription_id      = var.subscription_id
   resource_group       = azurerm_resource_group.resource_group
-  network_interface_id = module.azure_network[count.index].network_interface_id
-  public_ip            = module.azure_network[count.index].public_ip_addresses
+  # network_interface_id = module.azure_network[count.index].network_interface_id
+  # public_ip            = module.azure_network[count.index].public_ip_addresses
+  public_ip_allocation_method = "Static"
+  subnet_id = module.azure_network[count.index].subnet_id
   depends_on = [
     module.azure_network
   ]
