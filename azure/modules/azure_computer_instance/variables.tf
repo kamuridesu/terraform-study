@@ -24,3 +24,9 @@ variable "public_ip_allocation_method" {
 variable "subnet_id" {
   description = "Subnet id"
 }
+
+variable "check_api_content" {
+  description = "Checks if the api was successfully deployed"
+  type        = bool
+  default     = false
+}
