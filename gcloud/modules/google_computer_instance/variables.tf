@@ -22,3 +22,8 @@ variable "gce_ssh_pub_key_file" {
     description = "public key to login on gce"
     type = string
 }
+
+variable "ssh_private_key" {
+  description = "private key for provisioner"
+  type = string
+}

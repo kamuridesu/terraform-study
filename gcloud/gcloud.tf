@@ -14,10 +14,11 @@ provider "google" {
 }
 
 module "google_computer_instance" {
-  source            = "./modules/google_computer_instance"
-  machine_type      = var.machine_type
-  boot_image             = var.boot_image
-  network_interface = var.network
+  source               = "./modules/google_computer_instance"
+  machine_type         = var.machine_type
+  boot_image           = var.boot_image
+  network_interface    = var.network
   gce_ssh_pub_key_file = var.ssh_pub_key
-  gce_ssh_user = var.ssh_user
+  gce_ssh_user         = var.ssh_user
+  ssh_private_key      = var.ssh_private_key
 }

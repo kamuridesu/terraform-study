@@ -17,13 +17,18 @@ variable "network" {
 }
 
 variable "ssh_user" {
-    description = "ssh user to be logged on gce"
-    type = string
-    default = "kamuri"
+  description = "ssh user to be logged on gce"
+  type        = string
+  default     = "kamuri"
 }
 
 variable "ssh_pub_key" {
-    description = "public key to login on gce"
-    type = string
-    default = "~/.ssh/gcloud.pub"
+  description = "public key to login on gce"
+  type        = string
+  default     = "~/.ssh/gcloud.pub"
+}
+
+variable "ssh_private_key" {
+  description = "ssh private key to provisioner"
+  type        = string
 }
