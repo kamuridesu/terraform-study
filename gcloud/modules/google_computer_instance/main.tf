@@ -1,3 +1,19 @@
+resource "google_compute_firewall" "allow_http" {
+  name    = "allow-http"
+  network = var.network_interface
+  allow {
+    ports    = ["5000"]
+    protocol = "tcp"
+  }
+  target_tags = ["allow-http"]
+  priority    = 1000
+}
+
+resource "google_compute_address" "static" {
+  name   = "ipv4-address"
+  region = "us-central1"
+}
+
 resource "google_compute_instance" "vm_instance" {
   name         = "tf-instance"
   machine_type = var.machine_type
@@ -14,6 +30,7 @@ resource "google_compute_instance" "vm_instance" {
   network_interface {
     network = var.network_interface
     access_config {
+      nat_ip = google_compute_address.static.address
     }
   }
 
@@ -37,7 +54,8 @@ resource "google_compute_instance" "vm_instance" {
       type        = "ssh"
       user        = var.gce_ssh_user
       private_key = file(var.ssh_private_key)
-      host = self.network_interface[0].access_config[0].nat_ip
+      host        = self.network_interface[0].access_config[0].nat_ip
     }
   }
+  tags = ["http-server", "https-server"]
 }
