@@ -48,7 +48,7 @@ resource "google_compute_instance" "vm_instance" {
       "sudo docker build -t api .",
       "sudo docker run -d --name api -p 5000:5000 api"
     ]
-    on_failure = continue
+    on_failure = fail
 
     connection {
       type        = "ssh"
@@ -57,5 +57,5 @@ resource "google_compute_instance" "vm_instance" {
       host        = self.network_interface[0].access_config[0].nat_ip
     }
   }
-  tags = ["http-server", "https-server"]
+  tags = ["http-server", "https-server", "allow-http"]
 }
