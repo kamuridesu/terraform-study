@@ -22,13 +22,13 @@ variable "ssh_user" {
   default     = "kamuri"
 }
 
-variable "ssh_pub_key" {
+variable "gcloud_public_ssh_key" {
   description = "public key to login on gce"
   type        = string
   default     = "~/.ssh/gcloud.pub"
 }
 
-variable "ssh_private_key" {
+variable "gclous_ssh_private_key" {
   description = "ssh private key to provisioner"
   type        = string
 }

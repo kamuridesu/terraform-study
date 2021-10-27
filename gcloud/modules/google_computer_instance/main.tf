@@ -18,7 +18,7 @@ resource "google_compute_instance" "vm_instance" {
   name         = "tf-instance"
   machine_type = var.machine_type
   metadata = {
-    ssh-keys = "${var.gce_ssh_user}:${file(var.gce_ssh_pub_key_file)}"
+    ssh-keys = "${var.gce_ssh_user}:${var.gce_ssh_pub_key}"
   }
 
   boot_disk {
@@ -53,7 +53,7 @@ resource "google_compute_instance" "vm_instance" {
     connection {
       type        = "ssh"
       user        = var.gce_ssh_user
-      private_key = file(var.ssh_private_key)
+      private_key = var.ssh_private_key
       host        = self.network_interface[0].access_config[0].nat_ip
     }
   }

@@ -18,7 +18,7 @@ variable "gce_ssh_user" {
   type        = string
 }
 
-variable "gce_ssh_pub_key_file" {
+variable "gce_ssh_pub_key" {
   description = "public key to login on gce"
   type        = string
 }
