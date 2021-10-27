@@ -1,4 +1,11 @@
 terraform {
+  backend "remote" {
+    organization = "example-org-49f043"
+
+    workspaces {
+      name = "gclaudio"
+    }
+  }
   required_providers {
     google = {
       source  = "hashicorp/google"
