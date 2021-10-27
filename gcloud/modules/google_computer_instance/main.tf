@@ -57,5 +57,10 @@ resource "google_compute_instance" "vm_instance" {
       host        = self.network_interface[0].access_config[0].nat_ip
     }
   }
+
+  provisioner "local-exec" {
+    command = "curl ${self.network_interface[0].access_config[0].nat_ip}:5000 >> api_response.txt"
+  }
+
   tags = ["http-server", "https-server", "allow-http"]
 }
