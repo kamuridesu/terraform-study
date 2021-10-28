@@ -30,3 +30,6 @@ override.tf.json
 
 # Sensible variables in tfvars files
 *.tfvars
+
+# Trash
+*.txt
