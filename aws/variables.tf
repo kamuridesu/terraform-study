@@ -15,3 +15,8 @@ variable "ssh_public_key" {
   type = string
   default = "~/.ssh/aws.pub"
 }
+
+variable "num_of_instances" {
+  type = number
+  default = 1
+}
