@@ -18,3 +18,7 @@ variable "username" {
   description = "username for provisioner ssh connection"
   type = string
 }
+
+variable "counter" {
+  type = number
+}

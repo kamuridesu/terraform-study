@@ -4,7 +4,7 @@ resource "aws_key_pair" "ssh_key" {
 }
 
 resource "aws_security_group" "ec2_security_ports" {
-  name = "ec2_security_ports"
+  name = "${var.counter}_ec2_security_ports"
   
   dynamic "ingress" {
     for_each = var.vm_connetion_ports
@@ -23,17 +23,17 @@ resource "aws_security_group" "ec2_security_ports" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = { Name = "ec2_security_ports"}
+  tags = { Name = "${var.counter}_ec2_security_ports"}
 }
 
-resource "aws_instance" "app_server" {
+resource "aws_instance" "api" {
   ami           = "ami-07d02ee1eeb0c996c"
   key_name = aws_key_pair.ssh_key.key_name
   instance_type = "t2.micro"
-  security_groups = [ "ec2_security_ports" ]
+  security_groups = [ aws_security_group.ec2_security_ports.name ]
 
   tags = {
-    Name = "ExampleAppServerInstance"
+    Name = "${var.counter}-API"
   }
 
   provisioner "remote-exec" {
