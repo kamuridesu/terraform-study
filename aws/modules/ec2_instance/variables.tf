@@ -1,8 +1,3 @@
-variable "public_key" {
-  description = "SSH public key"
-  type = string
-}
-
 variable "private_key"{
   description = "SSH private key for provisioner"
   type = string
@@ -21,4 +16,12 @@ variable "username" {
 
 variable "counter" {
   type = number
+}
+
+variable "ssh_key_name" {
+  type = string
+}
+
+variable "sec_group_name" {
+  type = string
 }

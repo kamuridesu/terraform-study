@@ -18,5 +18,5 @@ variable "ssh_public_key" {
 
 variable "num_of_instances" {
   type = number
-  default = 1
+  default = 2
 }
