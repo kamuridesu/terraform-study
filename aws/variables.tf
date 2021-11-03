@@ -1,10 +1,10 @@
 variable "vm_connetion_ports" {
-    type = list(number)
-    default = [22, 5000]
+  type    = list(number)
+  default = [22, 5000]
 }
 
 variable "username" {
-    type = string
+  type = string
 }
 
 variable "ssh_private_key" {
@@ -12,11 +12,11 @@ variable "ssh_private_key" {
 }
 
 variable "ssh_public_key" {
-  type = string
+  type    = string
   default = "~/.ssh/aws.pub"
 }
 
 variable "num_of_instances" {
-  type = number
+  type    = number
   default = 2
 }
